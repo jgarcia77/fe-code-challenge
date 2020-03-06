@@ -16,7 +16,7 @@ const Search = ({
                 selectedSpot={selectedSpot}
                 setSpot={setSpot}
             />
-            <div className="Search-content" />
+            <div id="modal-root" className="Search-content" />
         </div>
     );
 };

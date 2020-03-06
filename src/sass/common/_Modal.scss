@@ -1,0 +1,52 @@
+.modal-root__dynamic-element {
+    height: inherit;
+
+    .overlay {
+        background-color: transparent;
+    }
+
+    .overlay--visible {
+        @include tablet {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: darken($color: #4682B4, $amount: 25%) ;
+            -webkit-transition: background-color 400ms ease-in;
+            -moz-transition: background-color 400ms ease-in;
+            transition: background-color 400ms ease-in;
+        }
+    }
+}
+
+.modal {
+    height: inherit;
+    background-color: #fff;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+
+    @include tablet {
+        height: auto;
+        @include center;
+    }
+
+    .content {
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+    }
+
+    .close {
+        cursor: pointer;
+        float: right;
+        padding-top: 10px;
+        padding-right: 10px;
+    }
+}
+
+.modal--open {
+    opacity: 1;
+}

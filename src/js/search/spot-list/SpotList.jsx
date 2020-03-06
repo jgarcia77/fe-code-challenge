@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import TextButton from '../../common/TextButton';
 import SpotItem from '../../spot/SpotItem';
+import SpotDetails from '../../spot/SpotDetails';
+import Modal from '../../common/Modal';
 
 export default class SpotList extends PureComponent {
     static propTypes = {
@@ -10,8 +12,24 @@ export default class SpotList extends PureComponent {
         setSpot: PropTypes.func.isRequired
     };
 
+    constructor() {
+        super();
+        this.state = {
+            modalOpen: false
+        }
+    }
+
     _onDetailsClick = spot => {
         this.props.setSpot(spot);
+        this.setState({modalOpen: true});
+    }
+
+    _onModalDetailsClose = () => {
+        this.setState({modalOpen: false});
+
+        setTimeout(() => {
+            this.props.setSpot(null);
+        }, 400);
     }
 
     render() {
@@ -19,6 +37,10 @@ export default class SpotList extends PureComponent {
             selectedSpot,
             spots
         } = this.props;
+
+        const {
+            modalOpen
+        } = this.state;
 
         return (
             <div className="SpotList">
@@ -41,7 +63,11 @@ export default class SpotList extends PureComponent {
                         );
                     })}
                 </div>
-
+                <Modal
+                    isOpen={modalOpen}
+                    onClose={this._onModalDetailsClose}>
+                    <SpotDetails spot={selectedSpot ? selectedSpot : {}} /> 
+                </Modal>
             </div>
         );
     }

@@ -1,0 +1,17 @@
+.spot-details {
+    clear: right;
+
+    .title {
+        text-align: center;
+    }
+
+    .book-it {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        
+        a {
+            color: #fff;
+        }
+    }
+}

@@ -9,7 +9,13 @@ $spot-list-width: 460px;
 .Search-content {
     position: absolute;
     top: 0;
-    left: $spot-list-width;
-    width: calc(100vw - #{$spot-list-width});
+    left: 0;
+    width: auto;
+
+    @include tablet {
+        left: $spot-list-width;
+        width: calc(100vw - #{$spot-list-width});
+    }
+
     height: 100vh;
 }
