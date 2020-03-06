@@ -5,6 +5,22 @@
         text-align: center;
     }
 
+    p {
+        @include tablet {
+            max-height: 250px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background: transparent;
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: darken($color: #fff, $amount: 10%);
+            }
+        }
+    }
+
     .book-it {
         margin-top: 15px;
         display: flex;

@@ -19,6 +19,12 @@ export default class SpotList extends PureComponent {
         }
     }
 
+    componentDidMount() {
+        if (this.props.selectedSpot) {
+            this._onDetailsClick(this.props.selectedSpot);
+        }
+    }
+
     _onDetailsClick = spot => {
         this.props.setSpot(spot);
         this.setState({modalOpen: true});
