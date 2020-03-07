@@ -61,27 +61,25 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus}) => {
                     name="email" 
                     label="Email" 
                     register={register({
-                        required: true,
-                        pattern: regExPatterns.email
-                    })} 
-                    error={errors.email} 
-                    messages={{
                         required: "Please enter a valid email",
-                        pattern: "Please enter a valid email"
-                        }} />
+                        pattern: {
+                            value: regExPatterns.email,
+                            message: "Please enter a valid email"
+                        }
+                    })} 
+                    error={errors.email} />
 
                 <TextBox 
                     name="phone" 
                     label="Phone Number" 
                     register={register({
-                        required: true,
-                        pattern: regExPatterns.phone
-                    })} 
-                    error={errors.phone} 
-                    messages={{
                         required: "Please enter a valid phone number",
-                        pattern: "Please enter a valid phone number"
-                        }} />
+                        pattern: {
+                            value: regExPatterns.phone,
+                            message: "Please enter a valid phone number"
+                        }
+                    })} 
+                    error={errors.phone} />
 
                 <div className="action-buttons">
                     <Button type="submit" color="submit">Purchase for {formatPrice(selectedSpot.price)}</Button>
