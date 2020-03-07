@@ -18,7 +18,7 @@
                 width: 5px;
                 background: transparent;
             }
-            
+
             &::-webkit-scrollbar-thumb {
                 background: darken($color: $color-white, $amount: 10%);
             }
@@ -29,7 +29,7 @@
         margin-top: 15px;
         display: flex;
         justify-content: center;
-        
+
         a {
             color: $color-white;
         }

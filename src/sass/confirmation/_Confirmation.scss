@@ -1,11 +1,15 @@
 .Confirmation {
-    width: 30%;
+    width: 70%;
     margin: 40px auto;
     padding: 25px;
     border: 1px solid $color-dashboard;
     border-radius: 8px;
     background-color: $color-white;
     text-align: center;
+
+    @include tablet {
+        width: 30%;
+    }
 
     h1 {
         text-align: center;

@@ -5,13 +5,16 @@
     border-radius: 8px;
     background-color: $color-white;
 
+    @include tablet {
+        width: 30%;
+    }
+
     .nav {
         padding: 10px 10px 10px 25px;
         background-color: $color-shift-hover;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         user-select: none;
-        
         a {
             color: $color-white;
         }

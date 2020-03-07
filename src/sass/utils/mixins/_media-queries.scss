@@ -1,7 +1,13 @@
 @mixin tablet {
-    @media (min-width: 35rem) { @content; }
+    @media (min-width: 35rem) {/* stylelint-disable-line media-feature-name-blacklist */
+
+        @content;
+    }
 }
 
 @mixin desktop {
-    @media (min-width: 60rem) { @content; }
+    @media (min-width: 60rem) {/* stylelint-disable-line media-feature-name-blacklist */
+
+        @content;
+    }
 }

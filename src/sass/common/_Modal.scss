@@ -15,8 +15,6 @@ $transition-duration: 400ms;
             height: 100%;
             width: 100%;
             background-color: $color-fuel;
-            -webkit-transition: background-color $transition-duration ease-in;
-            -moz-transition: background-color $transition-duration ease-in;
             transition: background-color $transition-duration ease-in;
         }
     }
@@ -26,13 +24,12 @@ $transition-duration: 400ms;
     height: inherit;
     background-color: $color-white;
     opacity: 0;
-    -webkit-transition: opacity $transition-duration ease-in;
-    -moz-transition: opacity $transition-duration ease-in;
     transition: opacity $transition-duration ease-in;
 
     @include tablet {
         height: auto;
         max-height: 450px;
+
         @include center;
     }
 
@@ -47,6 +44,7 @@ $transition-duration: 400ms;
         float: right;
         padding-top: 10px;
         padding-right: 10px;
+        -webkit-touch-callout: none;
         user-select: none;
     }
 }
