@@ -42,6 +42,7 @@
     "react": "16.13.0",
     "react-app-rewired": "2.1.5",
     "react-dom": "16.13.0",
+    "react-hook-form": "4.10.2",
     "react-hot-loader": "4.8.4",
     "react-redux": "7.0.3",
     "react-router-dom": "5.0.0",
@@ -52,5 +53,7 @@
     "regenerator-runtime": "0.13.2",
     "transitionEnd": "1.0.2"
   },
-  "browserslist": ["defaults"]
+  "browserslist": [
+    "defaults"
+  ]
 }

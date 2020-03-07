@@ -7,20 +7,17 @@ import Image from '../common/Image';
 
 class Confirmation extends PureComponent {
     static propTypes = {
-        email: PropTypes.string.isRequired,
+        checkout: PropTypes.object,
         selectedSpot: PropTypes.object,
         pushTo: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-
+    componentDidMount() {
         const {
-            selectedSpot,
-            pushTo
-        } = props;
+            pushTo,
+            selectedSpot
+        } = this.props;
 
-        // if you refresh on confirmation and there isn't a selectedSpot, make sure to go back to search and render nothing here
         if (!selectedSpot) {
             pushTo('/');
         }
@@ -36,7 +33,7 @@ class Confirmation extends PureComponent {
 
     render() {
         const {
-            email,
+            checkout,
             selectedSpot
         } = this.props;
 
@@ -49,7 +46,7 @@ class Confirmation extends PureComponent {
                 <h1>Park it like its hot!</h1>
                 <p>You successfully purchased parking at <strong>{selectedSpot.title}</strong> for <strong>${(selectedSpot.price / 100).toFixed(2)}</strong>.</p>
                 <Image src={selectedSpot.image} />
-                <p>We emailed a receipt to <a href={`mailto:${email}`}>{email}</a>.</p>
+                <p>We emailed a receipt to <a href={`mailto:${checkout.email}`}>{checkout.email}</a>.</p>
                 <Button
                     color="primary"
                     onClick={this._onPurchaseAnotherClick}
@@ -63,16 +60,14 @@ class Confirmation extends PureComponent {
 
 const mapStateToProps = state => {
     const {
-        checkout: {
-            email
-        },
         spot: {
-            selected: selectedSpot
+            selected: selectedSpot,
+            checkout
         }
     } = state;
 
     return {
-        email,
+        checkout,
         selectedSpot
     };
 };

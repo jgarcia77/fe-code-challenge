@@ -9,7 +9,8 @@ export default class SpotList extends PureComponent {
     static propTypes = {
         selectedSpot: PropTypes.object,
         spots: PropTypes.arrayOf(PropTypes.object).isRequired,
-        setSpot: PropTypes.func.isRequired
+        setSpot: PropTypes.func.isRequired,
+        updateCheckout: PropTypes.func.isRequired
     };
 
     constructor() {
@@ -21,7 +22,8 @@ export default class SpotList extends PureComponent {
 
     componentDidMount() {
         if (this.props.selectedSpot) {
-            this._onDetailsClick(this.props.selectedSpot);
+            this.props.setSpot(null);
+            this.props.updateCheckout(null);
         }
     }
 

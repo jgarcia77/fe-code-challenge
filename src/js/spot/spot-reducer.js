@@ -1,7 +1,8 @@
-import {SPOT_UPDATE_SELECTED} from './spot-actions';
+import {SPOT_UPDATE_SELECTED, SPOT_PURCHASE} from './spot-actions';
 
 const initialState = {
-    selected: null
+    selected: null,
+    checkout: null
 };
 
 export default function spot(state = initialState, {type, payload}) {
@@ -11,6 +12,13 @@ export default function spot(state = initialState, {type, payload}) {
                 ...state,
                 selected: payload || null
             };
+        }
+
+        case SPOT_PURCHASE: {
+            return {
+                ...state,
+                checkout: payload || null
+            }
         }
 
         default:
