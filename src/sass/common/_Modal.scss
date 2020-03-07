@@ -1,3 +1,5 @@
+$transition-duration: 400ms;
+
 .modal-root__dynamic-element {
     height: inherit;
 
@@ -12,21 +14,21 @@
             left: 0;
             height: 100%;
             width: 100%;
-            background-color: darken($color: #4682B4, $amount: 25%) ;
-            -webkit-transition: background-color 400ms ease-in;
-            -moz-transition: background-color 400ms ease-in;
-            transition: background-color 400ms ease-in;
+            background-color: $color-fuel;
+            -webkit-transition: background-color $transition-duration ease-in;
+            -moz-transition: background-color $transition-duration ease-in;
+            transition: background-color $transition-duration ease-in;
         }
     }
 }
 
 .modal {
     height: inherit;
-    background-color: #fff;
+    background-color: $color-white;
     opacity: 0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
+    -webkit-transition: opacity $transition-duration ease-in;
+    -moz-transition: opacity $transition-duration ease-in;
+    transition: opacity $transition-duration ease-in;
 
     @include tablet {
         height: auto;
@@ -45,6 +47,7 @@
         float: right;
         padding-top: 10px;
         padding-right: 10px;
+        user-select: none;
     }
 }
 

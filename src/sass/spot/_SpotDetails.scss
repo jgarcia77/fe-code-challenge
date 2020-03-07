@@ -5,6 +5,10 @@
         text-align: center;
     }
 
+    .sub-title {
+        margin-top: 20px;
+    }
+
     p {
         @include tablet {
             max-height: 250px;
@@ -16,7 +20,7 @@
             }
             
             &::-webkit-scrollbar-thumb {
-                background: darken($color: #fff, $amount: 10%);
+                background: darken($color: $color-white, $amount: 10%);
             }
         }
     }
@@ -27,7 +31,7 @@
         justify-content: center;
         
         a {
-            color: #fff;
+            color: $color-white;
         }
     }
 }

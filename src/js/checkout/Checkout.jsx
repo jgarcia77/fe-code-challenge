@@ -2,9 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import TextBox from '../common/TextBox';
 import Button from '../common/Button';
+import Image from '../common/Image';
 import {connect} from 'react-redux';
 import {submitPurchase} from '../spot/spot-actions';
 import {push} from 'connected-react-router';
+import { Link } from "react-router-dom";
+import {formatPrice} from "../utils/number-formatting";
+import regExPatterns from "../utils/regex-patterns";
 
 const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
     const { register, handleSubmit, errors } = useForm();
@@ -31,7 +35,20 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
 
     return (
         <div className="Checkout">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="nav">
+                <Link to="/">&#60; Back to Search</Link>
+            </div>
+            <div className="header">
+                <div className="spot-image">
+                    <Image src={selectedSpot.image} />
+                </div>
+                <div className="spot-info">
+                    <h1  className="heading-sm">{selectedSpot.title}</h1>
+                    <p>{selectedSpot.distance}</p>
+                </div>
+            </div>
+            <hr />
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <TextBox 
                     name="firstName" 
                     label="First Name" 
@@ -47,8 +64,7 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
                     label="Email" 
                     register={register({
                         required: true,
-                        // eslint-disable-next-line
-                        pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        pattern: regExPatterns.email
                     })} 
                     error={errors.email} 
                     messages={{
@@ -61,8 +77,7 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
                     label="Phone Number" 
                     register={register({
                         required: true,
-                        // eslint-disable-next-line
-                        pattern: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
+                        pattern: regExPatterns.phone
                     })} 
                     error={errors.phone} 
                     messages={{
@@ -70,7 +85,9 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
                         pattern: "Please enter a valid phone number"
                         }} />
 
-                <Button type="submit" color="submit">Purchase for </Button>
+                <div className="action-buttons">
+                    <Button type="submit" color="submit">Purchase for {formatPrice(selectedSpot.price)}</Button>
+                </div>
             </form>
         </div>
     );

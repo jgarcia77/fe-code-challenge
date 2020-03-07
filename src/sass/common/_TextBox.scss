@@ -1,5 +1,9 @@
 .text-field {
     display: flex;
     flex-direction: column;
-    padding: 10px 30px;
+    padding: 10px 0px;
+
+    .error {
+        color: $color-stop;
+    }
 }

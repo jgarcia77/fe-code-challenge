@@ -6,10 +6,10 @@ const TextBox = ({name, label, register, error, messages = {}}) => {
             <label>{label}</label>
             <input name={name} ref={register} />
             {error && error.type === "required" && (
-                <p>{messages.required}</p>
+                <p className="error">{messages.required}</p>
             )}
             {error && error.type === "pattern" && (
-                <p>{messages.pattern}</p>
+                <p className="error">{messages.pattern}</p>
             )}
         </div>
     );

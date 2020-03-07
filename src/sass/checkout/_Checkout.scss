@@ -1,6 +1,58 @@
 .Checkout {
-    button[type="submit"] {
-        float: right;
-        margin-right: 30px;
+    width: 60%;
+    margin: 40px auto;
+    border: 1px solid $color-dashboard;
+    border-radius: 8px;
+    background-color: $color-white;
+
+    .nav {
+        padding: 10px 10px 10px 25px;
+        background-color: $color-shift-hover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        user-select: none;
+        
+        a {
+            color: $color-white;
+        }
+    }
+
+    .header {
+        padding-top: 25px;
+        padding-right: 25px;
+        padding-left: 25px;
+
+        @include tablet {
+            display: flex;
+        }
+    }
+
+    hr {
+        border-width: thin;
+        border-color: lighten($color: $color-cement, $amount: 50%);
+        margin-left: 25px;
+        margin-right: 25px;
+
+        @include tablet {
+            margin-top: 20px;
+        }
+    }
+
+    .spot-info {
+        @include tablet {
+            flex-grow: 1;
+            margin-left: 25px;
+        }
+    }
+
+    form {
+        padding-right: 25px;
+        padding-left: 25px;
+        padding-bottom: 25px;
+    }
+
+    .action-buttons {
+        margin-top: 15px;
+        text-align: right;
     }
 }
