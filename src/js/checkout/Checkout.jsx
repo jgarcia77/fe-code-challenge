@@ -10,9 +10,23 @@ import { Link } from "react-router-dom";
 import {formatPrice} from "../utils/number-formatting";
 import regExPatterns from "../utils/regex-patterns";
 import {Redirect} from "react-router-dom";
+import Cleave from 'cleave.js';
 
 const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus}) => {
     const { register, handleSubmit, errors } = useForm();
+
+    React.useEffect(() => {
+        const selector = 'input[name="phone"]';
+        const phoneEl = document.querySelector(selector);
+
+        if (phoneEl) {
+            new Cleave('input[name="phone"]', {
+                numericOnly: true,
+                blocks: [0, 3, 3, 4],
+                delimiters: ['(', ') ', '-']
+            });
+        }
+    }, []);
 
     const onSubmit = (data) => { 
         const postData = {
@@ -46,7 +60,7 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus}) => {
                 </div>
             </div>
             <hr />
-            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <form autoComplete="off" className="form" onSubmit={handleSubmit(onSubmit)}>
                 <TextBox 
                     name="firstName" 
                     label="First Name" 
