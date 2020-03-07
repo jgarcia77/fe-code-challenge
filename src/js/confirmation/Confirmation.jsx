@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 import Button from '../common/Button';
 import Image from '../common/Image';
+import {formatPrice} from "../utils/number-formatting";
 
 class Confirmation extends PureComponent {
     static propTypes = {
@@ -44,7 +45,7 @@ class Confirmation extends PureComponent {
         return (
             <div className="Confirmation">
                 <h1>Park it like its hot!</h1>
-                <p>You successfully purchased parking at <strong>{selectedSpot.title}</strong> for <strong>${(selectedSpot.price / 100).toFixed(2)}</strong>.</p>
+                <p>You successfully purchased parking at <strong>{selectedSpot.title}</strong> for <strong>{formatPrice(selectedSpot.price)}</strong>.</p>
                 <Image src={selectedSpot.image} />
                 <p>We emailed a receipt to <a href={`mailto:${checkout.email}`}>{checkout.email}</a>.</p>
                 <Button

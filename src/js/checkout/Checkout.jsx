@@ -1,17 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import TextBox from '../common/TextBox';
 import Button from '../common/Button';
 import Image from '../common/Image';
 import {connect} from 'react-redux';
 import {submitPurchase} from '../spot/spot-actions';
-import {push} from 'connected-react-router';
 import { Link } from "react-router-dom";
 import {formatPrice} from "../utils/number-formatting";
 import regExPatterns from "../utils/regex-patterns";
+import {Redirect} from "react-router-dom";
 
-const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
+const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus}) => {
     const { register, handleSubmit, errors } = useForm();
+
     const onSubmit = (data) => { 
         const postData = {
             spotId: selectedSpot.id,
@@ -21,17 +23,13 @@ const Checkout = ({selectedSpot, purchaseSpot, checkoutStatus, pushTo}) => {
         purchaseSpot(postData);
     }
 
-    React.useEffect(() => {
-        if (!selectedSpot) {
-            pushTo("/");
-        }
-    }, [selectedSpot, pushTo]);
+    if (!selectedSpot) {
+        return <Redirect to="/" />
+    }
 
-    React.useEffect(() => {
-        if (checkoutStatus && checkoutStatus.success) {
-            pushTo("/confirmation");
-        }
-    }, [checkoutStatus, pushTo]);
+    if (checkoutStatus && checkoutStatus.success) {
+        return <Redirect to="/confirmation" />
+    }
 
     return (
         <div className="Checkout">
@@ -108,8 +106,18 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    purchaseSpot: submitPurchase,
-    pushTo: push
+    purchaseSpot: submitPurchase
 };
+
+Checkout.propTypes = {
+    selectedSpot: PropTypes.object.isRequired, 
+    purchaseSpot: PropTypes.func.isRequired, 
+    checkoutStatus: PropTypes.object
+};
+
+Checkout.defaultProps = {
+    selectedSpot: {},
+    purchaseSpot: () => {}
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

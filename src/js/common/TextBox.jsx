@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextBox = ({name, label, register, error, messages = {}}) => {
     return (
@@ -14,5 +15,21 @@ const TextBox = ({name, label, register, error, messages = {}}) => {
         </div>
     );
 }
+
+TextBox.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    register: PropTypes.func.isRequired,
+    error: PropTypes.object,
+    messages: PropTypes.object
+};
+
+TextBox.defaultPropTypes = {
+    name: '',
+    label: '',
+    register: () => {},
+    error: {},
+    messages: {}
+};
 
 export default TextBox;
