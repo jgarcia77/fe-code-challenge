@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../common/Button';
-import { Link } from "react-router-dom";
 import {formatPrice} from "../utils/number-formatting";
+import {withRouter} from 'react-router-dom';
 
-const SpotDetails = ({spot}) => {
+const SpotDetails = ({spot, history}) => {
+    const _onBookItClick = () => {
+        history.push('/checkout');
+    }
+
     return (
         <div className="spot-details">
             <h1 className="heading-sm title">Spot Details</h1>
             <h2 className="heading-sm sub-title">{spot.title}</h2>
             <p>{spot.description}</p>
             <div className="book-it">
-                <Button color="primary">
-                    <Link to="/checkout">{formatPrice(spot.price)} &#124; Book It!</Link>
+                <Button color="primary" onClick={_onBookItClick}>
+                    {formatPrice(spot.price)} &#124; Book It!
                 </Button>
             </div>
         </div>
@@ -31,4 +35,4 @@ SpotDetails.defaultProps = {
     spot: {}
 };
 
-export default SpotDetails;
+export default withRouter(SpotDetails);
