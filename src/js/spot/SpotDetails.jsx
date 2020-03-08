@@ -15,7 +15,7 @@ const SpotDetails = ({spot, history}) => {
             <h2 className="heading-sm sub-title">{spot.title}</h2>
             <p>{spot.description}</p>
             <div className="book-it">
-                <Button color="primary" onClick={_onBookItClick}>
+                <Button data-testid="test-book-it" color="primary" onClick={_onBookItClick}>
                     {formatPrice(spot.price)} &#124; Book It!
                 </Button>
             </div>
