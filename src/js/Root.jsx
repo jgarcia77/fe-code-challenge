@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'connected-react-router';
 import axios from 'axios';
-import createStore, {getHistory} from './store/store';
+import {buildStore, getHistory} from './store/store';
 import App from './App';
+import { PersistGate } from 'redux-persist/integration/react'
+
+const reduxStore = buildStore();
 
 export default class Root extends Component {
     state = {
@@ -46,10 +49,12 @@ export default class Root extends Component {
 
         return (
             <div className="Root">
-                <Provider store={createStore()}>
-                    <ConnectedRouter history={getHistory()}>
-                        <App spots={spots} />
-                    </ConnectedRouter>
+                <Provider store={reduxStore.storeInstance}>
+                    <PersistGate loading={null} persistor={reduxStore.persistorInstance}>
+                        <ConnectedRouter history={getHistory()}>
+                            <App spots={spots} />
+                        </ConnectedRouter>
+                    </PersistGate>
                 </Provider>
             </div>
         );
